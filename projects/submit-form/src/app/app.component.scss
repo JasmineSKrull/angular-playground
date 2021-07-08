@@ -1,5 +1,13 @@
+.header {
+  background-color: #03738C;
+  color: #ffffff;
+  padding: 1rem;
+  text-align: center;
+  font-family: sans-serif;
+}
+
 .background-color {
-  background-color: #ececec;
+  background-color: #f3f1f1;
   min-height: 100vh;
 }
 
@@ -11,8 +19,103 @@ form {
   border: 1px solid #c4c2c2;
   background-color: #ffffff;
   border-radius: 5px;
-  height: 500px;
+  height: 100%;
   width: 500px;
   margin: auto;
   margin-top: 3rem;
+  font-family: sans-serif;
+
+  label {
+    color: #615f5f;
+  }
+
+  input,
+  textarea,
+  button {
+    border-radius: 5px;
+    border: 1px solid #03738C;
+  }
+
+  input {
+    padding: 0 1rem;
+    height: 30px;
+    margin-top: 0.5rem;
+  }
+
+  textarea {
+    padding: 0 1rem;
+    height: 100px;
+    margin-top: 0.5rem;
+  }
 }
+
+.primary-btn {
+  background-color: #03738C;
+  color: #ffffff;
+
+  &:hover {
+    background-color: #014858;
+  }
+}
+
+.secondary-btn {
+  background-color: #ffffff;
+  color: #03738C;
+
+  &:hover {
+    background-color: #03738C15;
+  }
+}
+
+.primary-btn, 
+.secondary-btn {
+  font-weight: bold;
+  padding: 0.75rem 0;
+  transition: 0.3s;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.form-padding {
+  padding: 1.5rem;
+}
+
+label {
+  display: block;
+}
+
+.md-margin-top {
+  margin-top: 2rem;
+}
+
+.one-col-grid {
+  display: grid;
+  grid-template-columns: repeat(1,1fr);
+}
+
+.two-col-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-gap: 1rem;
+}
+
+@media screen and (max-width: 700px) {
+  .two-col-grid {
+    grid-template-columns: repeat(1,1fr);
+  }
+
+  form {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
+}
+
+
+/* Color Theme Swatches in Hex */
+.GAZPROMBANK.-Bank-card-design { color: #A63247; }
+.GAZPROMBANK.-Bank-card-design { color: #BA73D9; }
+.GAZPROMBANK.-Bank-card-design { color: #0367A6; }
+.GAZPROMBANK.-Bank-card-design { color: #03738C; }
+.GAZPROMBANK.-Bank-card-design { color: #A65D33; }
