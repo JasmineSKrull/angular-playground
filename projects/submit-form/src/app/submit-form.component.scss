@@ -90,6 +90,10 @@ label {
   margin-top: 2rem;
 }
 
+.remove-bottom-margin {
+  margin-bottom: 0;
+}
+
 .one-col-grid {
   display: grid;
   grid-template-columns: repeat(1,1fr);
@@ -107,8 +111,8 @@ label {
   }
 
   form {
-    margin-left: 1.5rem;
-    margin-right: 1.5rem;
+    margin: auto;
+    margin-top: 3rem;
   }
 }
 
