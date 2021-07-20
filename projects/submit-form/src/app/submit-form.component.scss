@@ -1,3 +1,4 @@
+//form styles
 .header {
   background-color: #03738C;
   color: #ffffff;
@@ -21,7 +22,11 @@
 }
 
 .error {
-  color: #A63247;
+  color: #A63247 !important;
+}
+
+.error-border {
+  border-color: #A63247 !important;
 }
 
 form {
@@ -87,12 +92,19 @@ form {
   }
 }
 
+
+label {
+  display: block;
+}
+
+
+//spacing classes
 .form-padding {
   padding: 1.5rem;
 }
 
-label {
-  display: block;
+.xs-margin-top {
+  margin-top: 0.25rem;
 }
 
 .md-margin-top {
@@ -103,6 +115,7 @@ label {
   margin-bottom: 0;
 }
 
+//grid classes
 .one-col-grid {
   display: grid;
   grid-template-columns: repeat(1,1fr);
@@ -114,6 +127,7 @@ label {
   grid-gap: 1rem;
 }
 
+//media queries
 @media screen and (max-width: 700px) {
   .two-col-grid {
     grid-template-columns: repeat(1,1fr);
@@ -124,7 +138,6 @@ label {
     margin-top: 3rem;
   }
 }
-
 
 /* Color Theme Swatches in Hex */
 .GAZPROMBANK.-Bank-card-design { color: #A63247; }
