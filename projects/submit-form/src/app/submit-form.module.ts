@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { SubmitFormRoutingModule } from './submit-form-routing.module';
@@ -10,7 +11,9 @@ import { SubmitFormComponent } from './submit-form.component';
   ],
   imports: [
     BrowserModule,
-    SubmitFormRoutingModule
+    FormsModule,
+    ReactiveFormsModule,
+    SubmitFormRoutingModule,
   ],
   providers: [],
   bootstrap: [SubmitFormComponent]
