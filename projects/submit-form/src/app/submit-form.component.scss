@@ -1,8 +1,12 @@
+//tokens
+$mdSpacer: 1rem;
+
+
 //form styles
 .header {
   background-color: #03738C;
   color: #ffffff;
-  padding: 1rem;
+  padding: $mdSpacer;
   text-align: center;
   font-family: sans-serif;
 }
@@ -29,7 +33,34 @@
   border-color: #A63247 !important;
 }
 
-form {
+.error-block {
+  display: inline-flex;
+  padding: $mdSpacer;
+  border: 1px solid #A63247;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+
+  h2 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .icon {
+    width: 50px;
+    background-color: #A63247;
+    margin-left: -$mdSpacer;
+    margin-top: -$mdSpacer;
+    margin-bottom: -$mdSpacer;
+    margin-right: $mdSpacer;
+  }
+}
+
+.card {
   border: 1px solid #c4c2c2;
   background-color: #ffffff;
   border-radius: 5px;
@@ -38,29 +69,29 @@ form {
   margin: auto;
   margin-top: 3rem;
   font-family: sans-serif;
+}
 
-  label {
-    color: #615f5f;
-  }
+label {
+  color: #615f5f;
+}
 
-  input,
-  textarea,
-  button {
-    border-radius: 5px;
-    border: 1px solid #03738C;
-  }
+input,
+textarea,
+button {
+  border-radius: 5px;
+  border: 1px solid #03738C;
+}
 
-  input {
-    padding: 0 1rem;
-    height: 30px;
-    margin-top: 0.5rem;
-  }
+input {
+  padding: 0 $mdSpacer;
+  height: 30px;
+  margin-top: 0.5rem;
+}
 
-  textarea {
-    padding: 0 1rem;
-    height: 100px;
-    margin-top: 0.5rem;
-  }
+textarea {
+  padding: 0 $mdSpacer;
+  height: 100px;
+  margin-top: 0.5rem;
 }
 
 .primary-btn {
@@ -126,7 +157,7 @@ label {
   display: grid;
   grid-template-columns: repeat(2,1fr);
   align-content: flex-start;
-  grid-gap: 1rem;
+  grid-gap: $mdSpacer;
 }
 
 //media queries
