@@ -13,11 +13,8 @@ export class SubmitFormComponent implements OnInit {
   submitForm = new FormGroup({
     fname: new FormControl('', Validators.required),
     lname: new FormControl('', Validators.required),
-    pnumber: new FormControl('', [
-      Validators.pattern("[0-9]{3}-[0-9]{3}-[0-9]{4}"),
-      Validators.maxLength(10),
-    ]),
-    email: new FormControl('', Validators.required),
+    pnumber: new FormControl(''),
+    email: new FormControl('', [Validators.required, Validators.email]),
     descript: new FormControl('', Validators.required),
   });
 

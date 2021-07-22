@@ -125,7 +125,7 @@
             <label 
               for="email"
               [ngClass]="{
-                'error': (submitForm.get('email').hasError('required') && 
+                'error': ((submitForm.get('email').hasError('required') || submitForm.get('email').hasError('email')) && 
                 submitForm.get('email').touched) || 
                 submitForm.get('email').invalid && error
               }"
@@ -134,11 +134,11 @@
             </label>
 
             <input 
-              type="text" 
+              type="email" 
               id="email" 
               formControlName="email"
               [ngClass]="{
-                'error-border': (submitForm.get('email').hasError('required') && 
+                'error-border': ((submitForm.get('email').hasError('required') || submitForm.get('email').hasError('email')) && 
                 submitForm.get('email').touched) || 
                 submitForm.get('email').invalid && error
               }"
@@ -154,6 +154,17 @@
               "
             >
               Please enter email to continue.
+            </div>
+
+            <div 
+              class="sub-text xs-margin-top" 
+              *ngIf="
+                (submitForm.get('email').hasError('email') && 
+                submitForm.get('email').touched) || 
+                submitForm.get('email').invalid && error
+              "
+            >
+              Please enter valid email to continue.
             </div>
           </div>
         </div>
