@@ -14,7 +14,11 @@ export class SubmitFormComponent implements OnInit {
     fname: new FormControl('', Validators.required),
     lname: new FormControl('', Validators.required),
     pnumber: new FormControl(''),
-    email: new FormControl('', [Validators.required, Validators.email]),
+    email: new FormControl('', [
+      Validators.required, 
+      Validators.email, 
+      Validators.pattern("^([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)$")
+    ]),
     descript: new FormControl('', Validators.required),
   });
 
