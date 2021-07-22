@@ -19,7 +19,7 @@ export class SubmitFormComponent implements OnInit {
       Validators.email, 
       Validators.pattern("^([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)$")
     ]),
-    descript: new FormControl('test', Validators.required),
+    descript: new FormControl('', Validators.required),
   });
 
   formValues: any;
@@ -41,7 +41,8 @@ export class SubmitFormComponent implements OnInit {
       this.formValues.fname === '' || 
       this.formValues.lname === '' || 
       this.formValues.email === '' || 
-      this.formValues.descript === ''
+      this.formValues.descript === '' ||
+      this.submitForm.get('email').hasError('email')
       ) {
       this.error = true
     } else {
@@ -83,7 +84,11 @@ export class SubmitFormComponent implements OnInit {
       fname: new FormControl('', Validators.required),
       lname: new FormControl('', Validators.required),
       pnumber: new FormControl(''),
-      email: new FormControl('', Validators.required),
+      email: new FormControl('', [
+        Validators.required, 
+        Validators.email, 
+        Validators.pattern("^([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)$")
+      ]),
       descript: new FormControl('', Validators.required),
     });
   }

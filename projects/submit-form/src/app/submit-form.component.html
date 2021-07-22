@@ -18,8 +18,7 @@
     <form 
       [formGroup]="submitForm" 
       (ngSubmit)="submit()" 
-      class="card" 
-      *ngIf="formEmpty"
+      class="card"
     >
       <div class="form-padding">
         <div class="one-col-grid">
@@ -29,13 +28,12 @@
             <div>
               <h2>Missing Content</h2>
   
-            <p>Please fill out the empty fields to continue.</p>
+            <p>Please fill out the required fields to continue.</p>
             </div>
           </div>
         </div>
-        
 
-        <div class="two-col-grid">
+        <div class="two-col-grid" *ngIf="!formSuccess">
           <div class="one-col-grid">
             <label 
               for="fname"
@@ -44,6 +42,7 @@
                 submitForm.get('fname').touched) || 
                 submitForm.get('fname').invalid && error
               }"
+              *ngIf="!formSuccess"
             >
               First Name<span class="error">*</span>
             </label>
@@ -58,11 +57,13 @@
                 submitForm.get('fname').invalid && error
               }"
               required
+              *ngIf="formEmpty"
             >
 
             <div 
               class="sub-text xs-margin-top" 
               *ngIf="
+                formEmpty &&
                 (submitForm.get('fname').errors?.required && 
                 submitForm.get('fname').touched) || 
                 submitForm.get('fname').invalid && error
@@ -70,6 +71,8 @@
             >
               Please enter first name to continue.
             </div>
+
+            <p [innerHTML]="firstName" *ngIf="formReview"></p>
           </div>
   
           <div class="one-col-grid">
@@ -80,6 +83,7 @@
                 submitForm.get('lname').touched) || 
                 submitForm.get('lname').invalid && error
               }"
+              *ngIf="!formSuccess"
             >
               Last Name<span class="error">*</span>
             </label>
@@ -94,11 +98,13 @@
                 submitForm.get('lname').invalid && error
               }"
               required
+              *ngIf="formEmpty"
             >
 
             <div 
               class="sub-text xs-margin-top" 
               *ngIf="
+                formEmpty &&
                 (submitForm.get('lname').hasError('required') && 
                 submitForm.get('lname').touched) || 
                 submitForm.get('lname').invalid && error
@@ -106,10 +112,12 @@
             >
               Please enter last name to continue.
             </div>
+
+            <p [innerHTML]="lastName" *ngIf="formReview"></p>
           </div>
   
           <div class="one-col-grid">
-            <label for="pnumber">Phone Number</label>
+            <label for="pnumber" *ngIf="!formSuccess">Phone Number</label>
 
             <input 
               type="tel"
@@ -118,7 +126,10 @@
               maxLength="14"
               pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" 
               (keyup)="getValue()"
+              *ngIf="formEmpty"
             >
+
+            <p [innerHTML]="number" *ngIf="formReview"></p>
           </div>
   
           <div class="one-col-grid">
@@ -129,6 +140,7 @@
                 submitForm.get('email').touched) || 
                 submitForm.get('email').invalid && error
               }"
+              *ngIf="!formSuccess"
             >
               Email<span class="error">*</span>
             </label>
@@ -143,14 +155,16 @@
                 submitForm.get('email').invalid && error
               }"
               required
+              *ngIf="formEmpty"
             >
 
             <div 
               class="sub-text xs-margin-top" 
               *ngIf="
+                formEmpty &&
                 (submitForm.get('email').hasError('required') && 
                 submitForm.get('email').touched) || 
-                submitForm.get('email').invalid && error
+                submitForm.get('email').invalid && error && submitForm.get('email').hasError('required')
               "
             >
               Please enter email to continue.
@@ -159,23 +173,27 @@
             <div 
               class="sub-text xs-margin-top" 
               *ngIf="
+                formEmpty &&
                 (submitForm.get('email').hasError('email') && 
                 submitForm.get('email').touched) || 
-                submitForm.get('email').invalid && error
+                submitForm.get('email').invalid && error && submitForm.get('email').hasError('email')
               "
             >
               Please enter valid email to continue.
             </div>
+
+            <p [innerHTML]="email" *ngIf="formReview"></p>
           </div>
         </div>
         
-        <div class="md-margin-top one-col-grid">
+        <div class="md-margin-top one-col-grid" *ngIf="!formSuccess">
           <label 
             for="descript"
             [ngClass]="{
               'error': (submitForm.get('descript').hasError('required') && 
               submitForm.get('descript').touched) || submitForm.get('descript').invalid && error
             }"
+            *ngIf="!formSuccess"
           >
             Brief Description<span class="error">*</span>
           </label>
@@ -189,24 +207,30 @@
               submitForm.get('descript').touched) || submitForm.get('descript').invalid && error
             }"
             required
+            *ngIf="formEmpty"
           ></textarea>
 
           <div 
-              class="sub-text xs-margin-top" 
-              *ngIf="
-                (submitForm.get('descript').hasError('required') && 
-                submitForm.get('descript').touched) || 
-                submitForm.get('descript').invalid && error
-              "
-            >
-              Please enter description to continue.
-            </div>
+            class="sub-text xs-margin-top" 
+            *ngIf="
+              (submitForm.get('descript').hasError('required') && 
+              submitForm.get('descript').touched) || 
+              submitForm.get('descript').invalid && error
+            "
+          >
+            Please enter description to continue.
+          </div>
+
+          <p [innerHTML]="description" *ngIf="formReview"></p>
         </div>
+
+        <p *ngIf="formSuccess">Thank you for your submission!</p>
 
         <div class="md-margin-top two-col-grid">
           <button 
             type="submit" 
             class="primary-btn"
+            *ngIf="formEmpty"
           >
             Submit</button>
 
@@ -214,69 +238,15 @@
             type="button" 
             class="secondary-btn" 
             (click)="clearForm()"
+            *ngIf="formEmpty"
           >
             Clear</button>
-        </div>
 
-        <p class="sub-text">Required*</p>
-      </div>
-    </form>
-
-    <div class="card" *ngIf="formReview">
-      <div class="form-padding">
-        <div class="two-col-grid">
-          <div class="one-col-grid">
-            <label 
-              for="fname"
-              [ngClass]="{
-                'error': submitForm.get('fname').errors?.required && 
-                submitForm.get('fname').touched
-              }"
-            >
-              First Name<span class="error">*</span>
-            </label>
-
-            <p [innerHTML]="firstName"></p>
-          </div>
-  
-          <div class="one-col-grid">
-            <label 
-              for="lname"
-              [ngClass]="{
-                'error': submitForm.get('lname').hasError('required') && 
-                submitForm.get('lname').touched
-              }"
-            >
-              Last Name<span class="error">*</span>
-            </label>
-
-            <p [innerHTML]="lastName"></p>
-          </div>
-  
-          <div class="one-col-grid">
-            <label for="pnumber">Phone Number</label>
-
-            <p [innerHTML]="number"></p>
-          </div>
-  
-          <div class="one-col-grid">
-            <label for="email">Email</label>
-
-            <p [innerHTML]="email"></p>
-          </div>
-        </div>
-        
-        <div class="md-margin-top one-col-grid">
-          <label for="descript">Brief Description</label>
-          
-          <p [innerHTML]="description"></p>
-        </div>
-
-        <div class="md-margin-top two-col-grid">
-          <button 
+            <button 
             type="button" 
             class="primary-btn"
             (click)="success()"
+            *ngIf="formReview"
           >
             Continue</button>
 
@@ -284,27 +254,21 @@
             type="button" 
             class="secondary-btn"
             (click)="back()"
+            *ngIf="formReview"
           >
             Back</button>
-        </div>
 
-        <p class="sub-text">Required*</p>
-      </div>
-    </div>
-
-    <div class="card" *ngIf="formSuccess">
-      <div class="form-padding">
-        <p>Thank you for your submission!</p>
-
-        <div class="md-margin-top two-col-grid">
-          <button 
-            type="button" 
-            class="primary-btn"
-            (click)="resetForm()"
-          >
+            <button 
+              type="button" 
+              class="primary-btn"
+              (click)="resetForm()"
+              *ngIf="formSuccess"
+            >
             Retry</button>
         </div>
+
+        <p class="sub-text" *ngIf="!formSuccess">Required*</p>
       </div>
-    </div>
+    </form>
   </div>
 </div>
