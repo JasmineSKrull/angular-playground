@@ -19,7 +19,7 @@ export class SubmitFormComponent implements OnInit {
       Validators.email, 
       Validators.pattern("^([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)$")
     ]),
-    descript: new FormControl('', Validators.required),
+    descript: new FormControl('test', Validators.required),
   });
 
   formValues: any;
