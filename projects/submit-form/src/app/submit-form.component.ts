@@ -1,3 +1,4 @@
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -12,7 +13,10 @@ export class SubmitFormComponent implements OnInit {
   submitForm = new FormGroup({
     fname: new FormControl('', Validators.required),
     lname: new FormControl('', Validators.required),
-    pnumber: new FormControl(''),
+    pnumber: new FormControl('', [
+      Validators.pattern("[0-9]{3}-[0-9]{3}-[0-9]{4}"),
+      Validators.maxLength(10),
+    ]),
     email: new FormControl('', Validators.required),
     descript: new FormControl('', Validators.required),
   });
@@ -43,13 +47,34 @@ export class SubmitFormComponent implements OnInit {
       this.error = false;
       this.firstName = this.formValues.fname;
       this.lastName = this.formValues.lname;
-      this.number = this.formValues.pnumber;
+      this.number = this.formatNumber(this.formValues.pnumber);
       this.email = this.formValues.email;
       this.description = this.formValues.descript;
       this.formEmpty = false;
       this.formReview = true;
       this.formSuccess = false;
     }
+  }
+
+  getValue(){
+    let value = this.submitForm.get('pnumber').value;
+    let newValue = this.formatNumber(value);
+    this.submitForm.controls['pnumber'].setValue(newValue);
+  }
+
+  formatNumber(value: any){
+    if(!value) return value;
+    
+    let num = value.toString().replace(/[^\d]/g, "");
+    let numLength = num.length;
+
+    if(numLength < 4) return num;
+
+    if(numLength < 7) {
+      return ('(' + num.slice(0,3) + ')' + ' ' + num.slice(3))
+    }
+
+    return ('(' + num.slice(0,3) + ')' + ' ' + num.slice(3,6) + '-' + num.slice(6,10))
   }
 
   clearForm(){
